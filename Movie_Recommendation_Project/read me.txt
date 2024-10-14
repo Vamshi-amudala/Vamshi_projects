@@ -1,0 +1,21 @@
+# Movie Genre Distribution Analysis
+
+## Overview
+This project analyzes the distribution of movies by genre using a dataset of movies. The goal is to visualize and understand the popularity of different movie genres.
+
+## Dataset
+The dataset used for this analysis can be found at the following source:
+- [Movies Recommendation Dataset](https://raw.githubusercontent.com/YBI-Foundation/Dataset/main/Movies%20Recommendation.csv)
+
+## Technologies Used
+- Python
+- Pandas
+- Matplotlib
+- Seaborn
+- Squarify (for treemaps)
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/movie-genre-analysis.git
+   cd movie-genre-analysis
