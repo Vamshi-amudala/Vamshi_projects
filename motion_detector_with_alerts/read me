@@ -1,0 +1,27 @@
+Motion Detection Alarm System
+This is a Python-based motion detection system that triggers an alarm sound and sends notifications via email and SMS when motion is detected through a webcam.
+
+Features
+    Motion detection using OpenCV.
+    Alarm sound when motion is detected.
+    Email and SMS alerts.
+Requirements
+    Python 3.x
+    Libraries: opencv-python, imutils
+    Webcam
+    Installation
+
+
+Install the required libraries:
+
+    pip install opencv-python imutils
+
+    Set up your email credentials in the script.
+    Usage
+
+
+Run the script:
+
+        python motion_alarm_system.py
+        
+        Press t to toggle alarm mode, and q to quit.
