@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+    <title>Students List</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}" />
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        .pagination {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 0;
+        }
+        .pagination li a {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .pagination li.active a {
+            background-color: #007bff;
+            color: white;
+            pointer-events: none;
+        }
+        .pagination li.disabled a {
+            color: #ccc;
+            pointer-events: none;
+        }
+        .top-graders {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .top-graders h3 {
+            margin-bottom: 10px;
+        }
+        .top-graders ul {
+            list-style: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Students List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Percentage</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${studentPage.content}">
+                <td th:text="${student.name}">Name</td>
+                <td th:text="${student.course}">Course</td>
+                <td th:text="${student.percentage}">%</td>
+                <td>
+                    <a th:href="@{/students/edit/{id}(id=${student.id})}">Edit</a> |
+                    <a th:href="@{/students/delete/{id}(id=${student.id})}" 
+                       onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <ul class="pagination">
+        <li th:classappend="${currentPage == 0} ? 'disabled'">
+            <a th:href="@{/students(page=${currentPage - 1}, size=${studentPage.size})}">&laquo; Prev</a>
+        </li>
+
+        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+            th:classappend="${i == currentPage} ? 'active'">
+            <a th:href="@{/students(page=${i}, size=${studentPage.size})}" 
+               th:text="${i + 1}">1</a>
+        </li>
+
+        <li th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+            <a th:href="@{/students(page=${currentPage + 1}, size=${studentPage.size})}">Next &raquo;</a>
+        </li>
+    </ul>
+
+    <div class="top-graders">
+        <h3>Top Graders</h3>
+        <ul>
+            <li th:each="top : ${topGraders}" th:text="${top.name + ' (' + top.percentage + '%)'}">Top Student</li>
+        </ul>
+    </div>
+
+    <div style="text-align:center; margin:20px;">
+        <a href="/students/add">Add New Student</a>
+    </div>
+
+</body>
+</html>
